@@ -6,7 +6,6 @@ import drinkshop.domain.Stoc;
 import drinkshop.repository.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 public class StocService {
 
@@ -70,7 +69,7 @@ public class StocService {
                 if (ramas <= 0) break;
 
                 double deScazut = Math.min(s.getCantitate(), ramas);
-                s.setCantitate((int)(s.getCantitate() - deScazut));
+                s.setCantitate(s.getCantitate() - deScazut);
                 ramas -= deScazut;
 
                 stocRepo.update(s);
