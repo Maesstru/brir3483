@@ -19,6 +19,7 @@ public class Product {
     }
 
     public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public String getNume() { return nume; }
     public double getPret() { return pret; }
     public CategorieBautura getCategorie() { return categorie; }
@@ -34,6 +35,18 @@ public class Product {
     }
     public void setNume(String nume) { this.nume = nume; }
     public void setPret(double pret) { this.pret = pret; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product product)) return false;
+        return id == product.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
 
     @Override
     public String toString() {

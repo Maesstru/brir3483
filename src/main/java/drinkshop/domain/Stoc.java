@@ -32,6 +32,10 @@ public class Stoc {
     }
 
     // --- setters ---
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
     }
