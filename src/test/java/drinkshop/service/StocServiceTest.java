@@ -78,7 +78,7 @@ class StocServiceTest {
         assertDoesNotThrow(() -> service.consuma(reteta));
 
         // assert
-        assertEquals(5.0, lot1.getCantitate(), 0.0001);
+        assertEquals(0.0, lot1.getCantitate(), 0.0001);
         verify(stocRepo, times(1)).findAll();
         verify(stocRepo, times(1)).update(lot1);
     }
@@ -92,9 +92,10 @@ class StocServiceTest {
 
         Stoc lot1 = stoc(1, "Zahar", 3, 1);
         Stoc lot2 = stoc(2, "Zahar", 4, 1);
+        Stoc lot3 = stoc(3, "Zahar", 10, 1);
 
         doReturn(true).when(service).areSuficient(reteta);
-        when(stocRepo.findAll()).thenReturn(List.of(lot1, lot2));
+        when(stocRepo.findAll()).thenReturn(List.of(lot1, lot2, lot3));
 
         // act
         assertDoesNotThrow(() -> service.consuma(reteta));
@@ -102,10 +103,12 @@ class StocServiceTest {
         // assert
         assertEquals(0.0, lot1.getCantitate(), 0.0001);
         assertEquals(2.0, lot2.getCantitate(), 0.0001);
+        assertEquals(10.0, lot3.getCantitate(), 0.0001);
 
         verify(stocRepo, times(1)).findAll();
         verify(stocRepo, times(1)).update(lot1);
         verify(stocRepo, times(1)).update(lot2);
+        verify(stocRepo, never()).update(lot3);
     }
 
     @Test

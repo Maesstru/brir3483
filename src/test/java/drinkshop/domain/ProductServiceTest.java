@@ -46,7 +46,7 @@ class ProductServiceTest {
         service.addProduct(p);
 
         // 3. ASSERT
-//        System.out.println("Succes! Produsul adăugat este: " + service.findById(id).toString());
+        System.out.println("Succes! Produsul adăugat este: " + service.findById(id).toString());
 
         assertEquals(1, service.getAllProducts().size());
         assertNotNull(service.findById(id));
@@ -70,7 +70,7 @@ class ProductServiceTest {
         });
 
         // 3. ASSERT
-//        System.out.println("Pentru ID=" + id + " si Pret=" + pret + " s-a returnat eroare: " + exception.getMessage().trim());
+        System.out.println("Pentru ID=" + id + " si Pret=" + pret + " s-a returnat eroare: " + exception.getMessage().trim());
         assertEquals(0, service.getAllProducts().size());
     }
 
@@ -91,7 +91,7 @@ class ProductServiceTest {
         });
 
         // 3. ASSERT
-//        System.out.println("Pentru ID=" + id + " si Nume='" + nume + "' s-a returnat eroare: " + exception.getMessage().trim());
+        System.out.println("Pentru ID=" + id + " si Nume='" + nume + "' s-a returnat eroare: " + exception.getMessage().trim());
         assertEquals(0, service.getAllProducts().size(), "Băutura NU trebuia salvată.");
     }
 
@@ -111,7 +111,7 @@ class ProductServiceTest {
         });
 
         // 3. ASSERT
-        //System.out.println("Pentru ID=" + id + " si Nume= " + nume + " s-a returnat eroare: " + exception.getMessage().trim());
+        System.out.println("Pentru ID=" + id + " si Nume= " + nume + " s-a returnat eroare: " + exception.getMessage().trim());
         assertEquals(0, service.getAllProducts().size());
     }
 
@@ -123,6 +123,6 @@ class ProductServiceTest {
             Double.parseDouble(pretInvalid);
         });
 
-        //System.out.println("Pentru introducerea textului '" + pretInvalid + "' ca pret, sistemul a aruncat: " + exception.toString());
+        System.out.println("Pentru introducerea textului '" + pretInvalid + "' ca pret, sistemul a aruncat: " + exception.toString());
     }
 }
