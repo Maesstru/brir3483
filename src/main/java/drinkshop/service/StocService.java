@@ -28,7 +28,7 @@ public class StocService {
     }
 
     public void delete(int id) {
-        stocRepo.delete(id);
+        stocRepo.delete(Integer.valueOf(id));
     }
 
     public boolean areSuficient(Reteta reteta) {
