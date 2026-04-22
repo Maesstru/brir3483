@@ -18,6 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class StocServiceTest {
 
+    Boolean isTrue = (Boolean) true;
+    Boolean isFalse = (Boolean) false;
     @Mock
     private Repository<Integer, Stoc> stocRepo;
 
@@ -35,7 +37,7 @@ class StocServiceTest {
                 ingredientReteta("Zahar", 5.0)
         );
 
-        doReturn(false).when(service).areSuficient(reteta);
+        doReturn(isFalse).when(service).areSuficient(reteta);
 
         // act + assert
         IllegalStateException ex = assertThrows(
@@ -52,7 +54,7 @@ class StocServiceTest {
     void TC02_retetaFaraIngrediente_terminareNormala() {
         // arrange
         Reteta reteta = retetaCuIngrediente(); // lista goala
-        doReturn(true).when(service).areSuficient(reteta);
+        doReturn(isTrue).when(service).areSuficient(reteta);
 
         // act
         assertDoesNotThrow(() -> service.consuma(reteta));
@@ -71,7 +73,7 @@ class StocServiceTest {
 
         Stoc lot1 = stoc(1, "Zahar", 3, 1);
 
-        doReturn(true).when(service).areSuficient(reteta);
+        doReturn(isTrue).when(service).areSuficient(reteta);
         when(stocRepo.findAll()).thenReturn(List.of(lot1));
 
         // act
@@ -94,7 +96,7 @@ class StocServiceTest {
         Stoc lot2 = stoc(2, "Zahar", 4, 1);
         Stoc lot3 = stoc(3, "Zahar", 10, 1);
 
-        doReturn(true).when(service).areSuficient(reteta);
+        doReturn(isTrue).when(service).areSuficient(reteta);
         when(stocRepo.findAll()).thenReturn(List.of(lot1, lot2, lot3));
 
         // act
@@ -123,7 +125,7 @@ class StocServiceTest {
                 ingredientReteta("Zahar", 5.0)
         );
 
-        doReturn(true).when(service).areSuficient(reteta);
+        doReturn(isTrue).when(service).areSuficient(reteta);
         when(stocRepo.findAll()).thenReturn(List.of()); // 0 loturi
 
         // act
