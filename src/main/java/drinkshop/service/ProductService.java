@@ -4,6 +4,7 @@ import drinkshop.domain.*;
 import drinkshop.repository.Repository;
 import drinkshop.service.validator.ProductValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,37 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+//    public List<Product> filterByTip(TipBautura tip) {
+//        if (tip == TipBautura.ALL) return getAllProducts();
+//        return getAllProducts().stream()
+//                .filter(p -> p.getTip() == tip)
+//                .collect(Collectors.toList());
+//    }
+
     public List<Product> filterByTip(TipBautura tip) {
-        if (tip == TipBautura.ALL) return getAllProducts();
-        return getAllProducts().stream()
-                .filter(p -> p.getTip() == tip)
-                .collect(Collectors.toList());
+        List<Product> result = new ArrayList<>();
+        List<Product> products = getAllProducts();
+
+        if (products == null || products.isEmpty()) {
+            return result;
+        }
+
+        for (Product p : products) {
+            if (p == null) {
+                continue;
+            }
+
+            if (tip == null) {
+                break;
+            }
+
+            if (tip == TipBautura.ALL) {
+                result.add(p);
+            } else if (p.getTip() == tip) {
+                result.add(p);
+            }
+        }
+
+        return result;
     }
 }
