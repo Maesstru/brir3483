@@ -26,7 +26,7 @@ public class RetetaValidator implements Validator<Reteta> {
                             .append("] cantitate negativa sau zero\n"));
         }
 
-        if (!errors.isEmpty())
+        if (errors.length() > 0)
             throw new ValidationException(errors.toString());
     }
 }

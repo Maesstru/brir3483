@@ -61,7 +61,7 @@ public class StocService {
 
             List<Stoc> ingredienteStoc = stocRepo.findAll().stream()
                     .filter(s -> s.getIngredient().equalsIgnoreCase(ingredient))
-                    .toList();
+                    .collect(java.util.stream.Collectors.toList());
 
             double ramas = necesar;
 
